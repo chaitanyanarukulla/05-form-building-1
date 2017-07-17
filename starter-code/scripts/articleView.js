@@ -1,5 +1,3 @@
-'use strict';
-
 var articleView = {};
 
 articleView.populateFilters = function() {
@@ -78,12 +76,14 @@ articleView.initNewArticlePage = function() {
 
   // TODO: Hide the article-export section on page load
 
-
-
-  $('#article').hide();
-  $('.main-nav').on('click', function() {
-    $('#article').show();
-  })
+  $('#newArticle').hide();
+  $('#write').click(function() {
+    if ($('#newArticle').is(":hidden")) {
+      $('#newArticle').slideDown("slow");
+    } else {
+      $('#newArticle').hide();
+    }
+  });
 
 
   $('#article-json').on('focus', function() {
@@ -94,9 +94,8 @@ articleView.initNewArticlePage = function() {
 };
 articleView.showPreview = function(event) {
   event.preventDefault();
-  $('#articlesPreview').empty();
-};
 
+};
 
 // this is the function that generates the preview and shows the export field
 articleView.create = function() {
@@ -123,5 +122,4 @@ articleView.initIndexPage = function() {
   articleView.handleMainNav();
   articleView.setTeasers();
   articleView.initNewArticlePage();
-
 };
